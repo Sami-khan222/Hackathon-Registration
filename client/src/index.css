@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-white font-sans text-navy-900 antialiased; }
+  h1, h2, h3, h4 { @apply font-display tracking-tight; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-brand-500; }
+  ::selection { @apply bg-brand-100; }
+}
+
+/* Single orchestrated moment: the hero pass settles into place once on load */
+@keyframes pass-settle {
+  from { opacity: 0; transform: translateY(18px) rotate(2.5deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(-1.5deg); }
+}
+.animate-pass { animation: pass-settle .8s cubic-bezier(.2,.7,.2,1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-pass { animation: none; transform: rotate(-1.5deg); }
+  * { transition-duration: 0.01ms !important; }
+}
